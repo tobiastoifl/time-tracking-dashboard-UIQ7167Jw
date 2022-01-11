@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css?family=Rubik&display=swap");
+
+body {
+    background-color: hsl(226, 43%, 10%);
+    font-family: Rubik;
+    font-size: 18px;
+    color: rgb(111, 118, 200);
+    font-weight: 300;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(111, 118, 200);
+}
+
+.border {
+    border: 3px solid green;
+}
+
+.roundcorner {
+    border-radius: 12px;
+}
+.padding {
+    padding: 20px;
+}
+.fontSmall {
+    font-size: 0.8rem;
+}
+.fontLarge {
+    font-size: 2rem;
+    font-weight: 400;
+}
+.fontXLarge {
+    font-size: 2.5rem;
+    font-weight: 300;
+}
+
+div.globalContainer {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+div.container {
+    /* Center vertically and horizontally */
+    position: absolute;
+    width: 70vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+/* Tile LEFT */
+
+div.profilemenuContainer {
+    min-width: 200px;
+    background-color: hsl(235, 46%, 20%);
+}
+div.profilemenuContainer img {
+    width: 60px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+}
+div.profilemenuContainer div.top {
+    background-color: hsl(246, 80%, 60%);
+}
+div.profilemenuContainer div.text {
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+div.profilemenuContainer div.text div.name {
+    color: #fff;
+    word-wrap: break-word;
+}
+div.profilemenuContainer div.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100px;
+}
+div.profilemenuContainer div.menu a.menucurrent {
+    color: #fff;
+}
+
+/* Tiles RIGHT */
+
+div.timetableContainer {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 20px;
+}
+div.timetableContainer div.tileContainer {
+    width: 200px;
+    background-repeat: no-repeat;
+    background-position: 90% 0%;
+    background-size: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+div.timetableContainer div.content {
+    height: 60%;
+    background-color: hsl(235, 46%, 20%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+div.timetableContainer div.tileContainer div.header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    color: #fff;
+}
+
+div.timetableContainer div.tileContainer div.content div.period {
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+div.timetableContainer div.tileContainer div.content div.period div.current {
+    color: #fff;
+}
+
+.bg_work {
+    background-image: url(images/icon-work.svg);
+    background-color: hsl(15, 100%, 70%);
+}
+.bg_play {
+    background-image: url(images/icon-play.svg);
+    background-color: hsl(195, 74%, 62%);
+}
+
+.bg_study {
+    background-image: url(images/icon-study.svg);
+    background-color: hsl(348, 100%, 68%);
+}
+
+.bg_exercise {
+    background-image: url(images/icon-exercise.svg);
+    background-color: hsl(145, 58%, 55%);
+}
+
+.bg_social {
+    background-image: url(images/icon-social.svg);
+    background-color: hsl(264, 64%, 52%);
+}
+
+.bg_self-care {
+    background-image: url(images/icon-self-care.svg);
+    background-color: hsl(43, 84%, 65%);
+}

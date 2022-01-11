@@ -1,80 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"> </script>
+
   <title>Frontend Mentor | Time tracking dashboard</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
 </head>
+
 <body>
-
-  Report for
-  Jeremy Robson
-
-  Daily
-  Weekly
-  Monthly
-
-  Work
-  5hrs <!-- daily -->
-  Previous - 7hrs <!-- daily -->
-  32hrs <!-- weekly -->
-  Previous - 36hrs <!-- weekly -->
-  103hrs <!-- monthly -->
-  Previous - 128hrs <!-- monthly -->
-
-  Play
-  1hr <!-- daily -->
-  Previous - 2hrs <!-- daily -->
-  10hrs <!-- weekly -->
-  Previous - 8hrs <!-- weekly -->
-  23hrs <!-- monthly -->
-  Previous - 29hrs <!-- monthly -->
-
-  Study
-  0hrs <!-- daily -->
-  Previous - 1hr <!-- daily -->
-  4hrs <!-- weekly -->
-  Previous - 7hrs <!-- weekly -->
-  13hrs <!-- monthly -->
-  Previous - 19hrs <!-- monthly -->
-
-  Exercise
-  1hr <!-- daily -->
-  Previous - 1hr <!-- daily -->
-  4hrs <!-- weekly -->
-  Previous - 5hrs <!-- weekly -->
-  11hrs <!-- monthly -->
-  Previous - 18hrs <!-- monthly -->
-
-  Social
-  1hr <!-- daily -->
-  Previous - 3hrs <!-- daily -->
-  5hrs <!-- weekly -->
-  Previous - 10hrs <!-- weekly -->
-  21hrs <!-- monthly -->
-  Previous - 23hrs <!-- monthly -->
-
-  Self Care
-  0hrs <!-- daily -->
-  Previous - 1hr <!-- daily -->
-  2hrs <!-- weekly -->
-  Previous - 2hrs <!-- weekly -->
-  7hrs <!-- monthly -->
-  Previous - 11hrs <!-- monthly -->
-
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+  <div class="globalContainer">
+    <div class="container">
+      <div class="profilemenuContainer roundcorner">
+        <div class="top roundcorner padding">
+          <img src="images/image-jeremy.png" />
+          <div class="text">
+            <div class="fontSmall">Report for</div>
+            <div class="name fontLarge">Jeremy Robson</div>
+          </div>
+        </div>
+        <div class="menu padding">
+          <a id="menuDaily" class="menucurrent" href="#" onclick="return false;">Daily</a>
+          <a id="menuWeekly" href="#" onclick="return false;">Weekly</a>
+          <a id="menuMonthly" href="#" onclick="return false;">Monthly</a>
+        </div>
+      </div>
+      <div class="timetableContainer"></div>
+    </div>
   </div>
+  <script>
+    var lodash = _.noConflict();
+    var view = "daily"
+    var data;
+    const timetableContainer = $("div.timetableContainer");
+
+    const update = () => {
+
+      $("a.menucurrent").removeClass("menucurrent");
+      timetableContainer.html("");
+      //console.log(data); // this will show the info it in firebug console
+      lodash.forEach(data, (tileData) => {
+        const { title, timeframes } = tileData;
+        const { current, previous } = timeframes[view];
+        var previousLabelText = "";
+        switch (view) {
+          case "daily":
+            previousLabelText = "Yesterday";
+            $("a#menuDaily").addClass("menucurrent");
+            break;
+          case "weekly":
+            previousLabelText = "Last Week";
+            $("a#menuWeekly").addClass("menucurrent");
+            break;
+          case "monthly":
+            previousLabelText = "Last Month";
+            $("a#menuMonthly").addClass("menucurrent");
+            break;
+          default: previousLabelText = "No Label"; break;
+        }
+        const tileContainer = $('<div id="tile_' + title + '" class="tileContainer roundcorner bg_' + lodash.replace(title.toLowerCase(), " ", "-") + '"></div>');
+        const timetableTileContent = $('<div class="content padding roundcorner"></div>');
+        const timetableTileHeader = $('<div class="header"><div>' + title + '</div><div>...</div></div>');
+        const timetableTilePeriod = $('<div class="period"><div class="current fontXLarge">' + current + 'hrs</div><div class="previous fontSmall">' + previousLabelText + ' - ' + previous + 'hrs</div></div>');
+        timetableTileContent.append(timetableTileHeader);
+        timetableTileContent.append(timetableTilePeriod);
+        tileContainer.append(timetableTileContent);
+        const tile = timetableContainer.append(tileContainer);
+      })
+    }
+
+    $("#menuDaily").click(() => { view = "daily"; update() });
+    $("#menuWeekly").click(() => { view = "weekly"; update() });
+    $("#menuMonthly").click(() => { view = "monthly"; update() });
+
+    $.getJSON("data.json", function (json) {
+      data = json;
+      update();
+    });
+  </script>
 </body>
+
 </html>
