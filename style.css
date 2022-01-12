@@ -1,11 +1,16 @@
 @import url("https://fonts.googleapis.com/css?family=Rubik&display=swap");
 
-body {
-    background-color: hsl(226, 43%, 10%);
+* {
     font-family: Rubik;
     font-size: 18px;
-    color: rgb(111, 118, 200);
     font-weight: 300;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: hsl(226, 43%, 10%);
+    color: rgb(111, 118, 200);
 }
 
 a {
@@ -35,6 +40,23 @@ a {
     font-weight: 300;
 }
 
+@media screen and (max-width: 375px) {
+    * {
+        font-size: 14px;
+    }
+    .fontSmall {
+        font-size: 0.9rem;
+    }
+    .fontLarge {
+        font-size: 1.5rem;
+        font-weight: 400;
+    }
+    .fontXLarge {
+        font-size: 2rem;
+        font-weight: 300;
+    }
+}
+
 div.globalContainer {
     height: 100vh;
     width: 100vw;
@@ -44,32 +66,65 @@ div.globalContainer {
 div.container {
     /* Center vertically and horizontally */
     position: absolute;
-    width: 70vw;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
-    flex-direction: row;
+    flex-direction: row nowrap;
     gap: 20px;
+}
+@media screen and (max-width: 375px) {
+    div.container {
+        flex-direction: column;
+    }
 }
 
 /* Tile LEFT */
 
 div.profilemenuContainer {
     min-width: 200px;
+    width: 200px;
     background-color: hsl(235, 46%, 20%);
+}
+@media screen and (max-width: 375px) {
+    div.profilemenuContainer {
+        min-width: 300px;
+        width: 300px;
+    }
 }
 div.profilemenuContainer img {
     width: 60px;
+    height: 60px;
     border-radius: 50%;
     border: 3px solid #fff;
+}
+@media screen and (max-width: 375px) {
+    div.profilemenuContainer img {
+        border: 2px solid #fff;
+    }
 }
 div.profilemenuContainer div.top {
     background-color: hsl(246, 80%, 60%);
 }
+@media screen and (max-width: 375px) {
+    div.profilemenuContainer div.top {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}
 div.profilemenuContainer div.text {
     padding-top: 30px;
     padding-bottom: 50px;
+}
+@media screen and (max-width: 375px) {
+    div.profilemenuContainer div.text {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        margin: auto;
+    }
 }
 div.profilemenuContainer div.text div.name {
     color: #fff;
@@ -81,6 +136,12 @@ div.profilemenuContainer div.menu {
     justify-content: space-between;
     height: 100px;
 }
+@media screen and (max-width: 375px) {
+    div.profilemenuContainer div.menu {
+        flex-direction: row;
+        height: auto;
+    }
+}
 div.profilemenuContainer div.menu a.menucurrent {
     color: #fff;
 }
@@ -88,9 +149,16 @@ div.profilemenuContainer div.menu a.menucurrent {
 /* Tiles RIGHT */
 
 div.timetableContainer {
+    max-width: 640;
+    width: 640px;
     display: flex;
     flex-flow: row wrap;
     gap: 20px;
+}
+@media screen and (max-width: 375px) {
+    div.timetableContainer {
+        width: auto;
+    }
 }
 div.timetableContainer div.tileContainer {
     width: 200px;
@@ -101,12 +169,24 @@ div.timetableContainer div.tileContainer {
     flex-direction: column;
     justify-content: flex-end;
 }
+@media screen and (max-width: 375px) {
+    div.timetableContainer div.tileContainer {
+        min-width: 300px;
+        width: 300px;
+        min-height: 150px;
+    }
+}
 div.timetableContainer div.content {
     height: 60%;
     background-color: hsl(235, 46%, 20%);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+@media screen and (max-width: 375px) {
+    div.timetableContainer div.content {
+        height: 50%;
+    }
 }
 
 div.timetableContainer div.tileContainer div.header {
@@ -121,6 +201,13 @@ div.timetableContainer div.tileContainer div.content div.period {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+@media screen and (max-width: 375px) {
+    div.timetableContainer div.tileContainer div.content div.period {
+        height: 50%;
+        flex-direction: row;
+        align-items: flex-end;
+    }
 }
 
 div.timetableContainer div.tileContainer div.content div.period div.current {
